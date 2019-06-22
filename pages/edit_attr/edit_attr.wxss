@@ -1,0 +1,77 @@
+
+
+.xx_input {
+  background-color: #FFFFFF;
+  font-size: 10pt;
+  padding: 0 15px;
+}
+.xx_line__gray{
+    content: "";
+    border-bottom: 1rpx #f0f0f0 solid;
+}
+
+.menu{
+    padding: 15px;
+}
+
+.menu_btn::before, .menu_btn::after {
+  border: none;
+}
+.xx_button__normal , .xx_button__hx{
+margin: 15px 15px 0;
+padding: 12pt 15px; 
+text-align: center;
+font-size: 11pt;
+line-height: 11pt;
+}
+
+.xx_button__normal{
+color:#000000;
+background-color:#F8F8F8;
+border:1px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.xx_button__normal_press{
+color:rgba(0, 0, 0, 0.6);
+background-color:#ededed;
+}
+.xx_button__hx{
+color:#FFFFFF;
+background-color:#ffbc34;
+}
+
+.xx_button__hx_press{
+    color:rgba(255, 255, 255, 0.6);
+    background-color:#fec656;
+}
+
+
+/****封面*****/
+.cover{
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+.cover image{
+    width: 80%;
+}
+
+.cover .des{
+    text-align: center;
+    width: 80%;
+    line-height: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 1rpx #f0f0f0 solid;
+}
+
+.cover .des_click{
+    color: #888;
+    background-color: #f0f0f0;
+}
+
+
+
+
+

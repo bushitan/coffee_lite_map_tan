@@ -1,0 +1,52 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.7.0",
+	"appid": "wxd2f409241725502b",
+	"projectname": "%E6%8E%A2%E5%BA%97%E5%B0%8F%E5%9C%B0%E5%9B%BE",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "扫描二维码进入poi",
+					"pathName": "pages/poi/poi",
+					"query": "mode=poi&poi_uuid=a17fc138-9243-11e9-9c7f-e95aa2c51b5d",
+					"scene": null
+				}
+			]
+		}
+	}
+}

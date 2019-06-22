@@ -1,0 +1,48 @@
+<cover-view class='user'>            
+    <cover-image 
+        class='user_logo' 
+        src='{{node.author_avatar_url}}'
+        hidden="{{node.author_avatar_url==''}}"
+    ></cover-image>
+    <cover-view >{{node.author_nick_name || ""}}</cover-view>
+</cover-view>
+
+        <!-- mode='aspectFit' -->
+<cover-view class='box'>
+    <cover-image 
+        class='cover' 
+        src='{{node.cover}}' 
+        mode='aspectFit'
+    ></cover-image>
+    <cover-view class='content'>
+        <cover-view class='name'>{{node.title}}</cover-view>
+        <cover-view class='title'>{{node.summary}}</cover-view>
+        <cover-view class='tool'>
+            <cover-view 
+                class='wx btn'  
+                catchtap='toWX' 
+                data-url="{{node.url}}"
+                hidden='{{node.url==""}}'
+                >详情
+            </cover-view>
+            
+            <cover-view 
+                class='red btn'  
+                catchtap='toRedCover' 
+                data-cover="{{node.qr}}"
+                hidden='{{node.qr==""}}'
+                >种草
+            </cover-view>
+        </cover-view>
+    </cover-view>
+</cover-view >
+<cover-view style='height:10px'></cover-view >
+
+
+
+            <!-- <cover-image 
+                class='red_logo' 
+                src='../../images/red_logo.png'
+                catchtap='toRedCover' 
+                data-cover="{{node.qr}}"
+            ></cover-image> -->

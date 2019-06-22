@@ -1,0 +1,21 @@
+<!--pages/content/content.wxml-->
+
+<view class='prepare' wx:if="{{isPreview}}">
+    <rich-text nodes="{{html}}" ></rich-text>
+    <view style='height:50px;'></view>
+    <button class='btn_back' catchtap='offPreview' type='primary' style="background-color:#409EFF;">返回编辑</button>
+</view>
+<view  wx:else>
+    <xing-editor 
+        bind:finish="finish" 
+        bind:preview="onPreview" 
+        output-type="html" 
+        image-upload-url="http://localhost:3000/upload" 
+        image-upload-name="image"
+         image-upload-key-chain="image.url" 
+         html="{{html}}" 
+    />
+    
+    <!-- <button class='btn_preview'  catchtap='switchPreview' type='primary'>预览</button> -->
+</view>
+

@@ -1,0 +1,48 @@
+{
+    "pages":[
+        "pages/poi/poi",
+        "pages/wx/wx",
+        "pages/route/route",
+        "pages/record/record",
+        "pages/edit_detail/edit_detail",
+        "pages/edit_attr/edit_attr",
+        "pages/my/my",
+        "pages/edit_pre/edit_pre",
+        "pages/cover/cover",
+        "pages/logs/logs"
+    ],
+    "window":{
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "南宁探店",
+        "navigationBarTextStyle":"black"
+    },
+    "tabBar": {
+        "color": "#cdcdcd",
+        "selectedColor": "#ffbc34",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/record/record",
+                "text": "探店",
+                "iconPath": "images/tabbar_view.png",
+                "selectedIconPath": "images/tabbar_view_select.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的地图",
+                "iconPath": "images/tabbar_view.png",
+                "selectedIconPath": "images/tabbar_view_select.png"
+            }
+        ]
+    },
+    "navigateToMiniProgramAppIdList": [
+        "wx7500cd1b23a33998","wxd19bbe9cb3b293b6"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    }
+}

@@ -1,0 +1,85 @@
+ .box{
+    display: flex;
+    /* justify-content: space-between; */
+}
+.cover{
+    /* : 96px; */
+    /* flex:1 1 auto; */
+    flex-shrink: 0;
+    width: 96px;
+    /* height: 64px; */
+}
+.content{
+    padding-left:10px ;
+    
+    white-space:wrap !important;
+}
+.name {    
+    font-size: 11pt;
+    text-overflow:ellipsis;
+    /* word-break:break-all;
+    white-space:wrap !important; */
+}
+
+.title{
+    font-size: 9pt;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin: 3px 0 ;
+}
+.distance{
+    font-size: 9pt;
+    color: #888;
+}
+.tool{
+    display: flex;
+    /* justify-content: flex-end; */
+    margin-top: 5px;
+}
+.btn{
+    font-size: 8pt;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+.nav{
+    background-color:#ffbc34;
+    margin-right: 10px;
+
+}
+
+/* 微信 */
+.wx{
+    background-color:#00bc0a;
+    margin-right: 10px;
+}
+/* 小红书 */
+.red{
+    background-color:#ff2741;
+    margin-right: 10px;
+}
+.cancle{
+    background-color:#eee;
+}
+
+
+
+.red_logo{
+    width: 30px;
+    height: 30px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    font-size: 11pt;
+    margin-top: 10px;
+}
+.user_logo{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin:10px 10px 10px 0;
+}
+

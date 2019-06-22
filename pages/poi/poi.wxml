@@ -1,0 +1,46 @@
+<view class='page'>
+<!--  
+        <view class='callout' hidden='{{!isShowCallout}}'>
+            <view>
+                <view class='poi_title'>{{poi.title}}</view>
+            </view>
+            <block wx:for="{{articleList}}"  wx:key="index">
+                <article node="{{item}}"></article>          
+            </block>        
+            <view class='cancle btn' catchtap='toCancle'>关闭</view>
+        </view> -->
+
+
+    <map 
+        id='map'
+        class='map '
+        latitude="{{poi.latitude || '22.81077'}}"
+        longitude="{{poi.longitude || '108.340187'}}"
+        markers="{{markers}}"
+        bindmarkertap="markertap"
+        show-location="true"
+        enable-scroll="true"
+        enable-overlooking="true"
+        show-compass="true"
+        enable-rotate="true"
+        scale="{{scale}}"
+    >
+        <cover-view class='callout' hidden='{{!isShowCallout}}'>
+            <cover-view class='box'>
+                <cover-view>
+                    <cover-view class='poi_title'>{{poi.title}}</cover-view>
+                </cover-view>
+                <block wx:for="{{articleList}}"  wx:key="index">
+                    <article node="{{item}}"></article>          
+                </block>        
+                <cover-view class='cancle btn' catchtap='toCancle'>关闭</cover-view>
+            </cover-view>
+        </cover-view>
+
+        <cover-view class='search' >
+            <!-- <cover-view class='btn' catchtap='toEditor'>最近的店</cover-view> -->
+            <cover-view class='btn' catchtap='toSelfLocation'>我的位置</cover-view>  
+        </cover-view>
+    </map>
+
+</view>

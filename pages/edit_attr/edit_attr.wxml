@@ -1,0 +1,55 @@
+
+
+<!-- <mark color="#187bbf" title="入场券"></mark>
+<view style='height:10px;'></view>
+ <block wx:for="{{signList}}">
+    <ticket title="{{item.meet_name}} " status="已付款（SN:{{item.sign_id}}）" qr="{{item.sign_id}}" name="{{item.cost_name}}"></ticket>
+</block> 
+ <ticket title="{{signList[0].meet_name}} " status="已付款（SN:{{signList[0].sign_id}}）" qr="{{signList[0].sign_id}}" name="{{signList[0].cost_name}}"></ticket> -->
+
+<view class='space'></view>
+<view  class="xx_line__gray">
+    <mark color="#ffbc34" title="请完善店铺内容"></mark>
+</view>
+<view class='cover' catchtap='chooseImage'>
+    <image src='{{shop.cover}}' mode="widthFix" wx:if="{{shop.cover.length > 0}}"></image>
+    <view class='des' hover-class='des_click' wx:else>点击上传封面</view>
+</view>
+<view class="xx_input ">
+    <xx-input name="简称" placeholder="请输入店铺简称" bindinput='inputName' value='{{shop.name}}'></xx-input>
+        <view class='xx_line__gray'></view> 
+    <xx-input name="全称" placeholder="请输入展示全称" bindinput='inputTitle' value='{{shop.title}}'></xx-input>
+        <view class='xx_line__gray'></view> 
+    <!-- <xx-input name="简介" placeholder="请输入展示简介" bindinput='inputSummary' value='{{shop.summary}}'></xx-input>
+    <view class='xx_line__gray'></view>      -->
+    
+    <xx-input name="位置"  placeholder="点击右边获取位置" mode="check" 
+        bindinput='inputAddress' value='{{shop.address}}'
+        catch:click='inputLocation' btnName="获取位置"
+    ></xx-input>
+
+    <view class='xx_line__gray'></view>     
+    
+    <xx-input name="详情" placeholder="已编字符：{{shop.content.length}}个" mode="content" 
+        bindinput='inputCompanyAddress' value='{{userInfo.company_address}}'
+        catch:click='toContent' btnName="编辑内容"
+    ></xx-input>
+
+</view>
+<!-- <button catchtap='toContent'>编辑内容</button> -->
+
+<view class='menu'>
+    <button 
+        class='menu_btn'
+        catchtap='confirm'
+        style="background-color:#ffbc34; color: #ffffff"
+        type='primary'
+        hover-class='click'
+    >更新</button>
+</view>
+
+<!-- <view class="xx_button__hx" hover-class='xx_button__hx_press' catchtap='confirm'>更新</view>
+<view class="xx_button__normal" hover-class='xx_button__normal_press' bindtap="back">返回</view> -->
+<view style='height:30px;'></view> 
+
+<!-- <web-view src="https://xcx.308308.com/huaxun_2/admin/login/?next=/huaxun_2/admin/"></web-view> -->
