@@ -1,3 +1,4 @@
+<cover-view class='page'>  
 <cover-view class='user'>            
     <cover-image 
         class='user_logo' 
@@ -8,15 +9,18 @@
 </cover-view>
 
         <!-- mode='aspectFit' -->
+        
+        <!-- src='{{node.qr + "?imageView2/1/w/500/h/710/q/75"}}'  -->
 <cover-view class='box'>
     <cover-image 
         class='cover' 
-        src='{{node.cover}}' 
-        mode='aspectFit'
+        src='{{node.qr + "?imageView2/1/w/96/h/96"}}' 
+        
+        mode='center'
     ></cover-image>
     <cover-view class='content'>
-        <cover-view class='name'>{{node.title}}</cover-view>
-        <cover-view class='title'>{{node.summary}}</cover-view>
+        <cover-view class='title'>{{node.title}}</cover-view>
+        <cover-view class='summary'>{{node.summary}}</cover-view>
         <cover-view class='tool'>
             <cover-view 
                 class='wx btn'  
@@ -37,6 +41,8 @@
     </cover-view>
 </cover-view >
 <cover-view style='height:10px'></cover-view >
+
+</cover-view >
 
 
 

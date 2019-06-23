@@ -18,6 +18,8 @@ Page({
         scale: 15,
         // 弹框
         isShowCallout: false,
+        markers:[], //地图标记点
+        poiHash:{},
         poi:{
             latitude: '22.81077',
             longitude: '108.340187'
@@ -26,6 +28,24 @@ Page({
         articleNav: {},
         MAP_ARTICLE_TYPE_WX: app.POI.MAP_ARTICLE_TYPE_WX, // 微信
         MAP_ARTICLE_TYPE_RED: app.POI.MAP_ARTICLE_TYPE_RED, // 小红书
+
+        tagList: [
+            {
+                "name": "喝", "key": "drink", "is_select": false,
+                "icon": "../../images/tag/tag_drink.png", "select": "../../images/tag/tag_drink_select.png", },
+            {
+                "name": "吃", "key": "eat", "is_select": false,
+                "icon": "../../images/tag/tag_eat.png", "select": "../../images/tag/tag_eat_select.png",
+            },
+            {
+                "name": "玩", "key": "play", "is_select": false,
+                "icon": "../../images/tag/tag_play.png", "select": "../../images/tag/tag_play_select.png",
+            },
+            {
+                "name": "全部", "key": "all", "is_select": false,
+                "icon": "../../images/tag/tag_all.png", "select": "../../images/tag/tag_all_select.png",
+            },
+        ],
     },
 
     /**
@@ -49,11 +69,29 @@ Page({
     onInit(options) {
         var mode = poiUtils.checkMode(options)
         console.log(mode)
+        GP.getIndex() // 初始化
         if (mode == app.POI.MODE_SCAN_TO_POI)
-            GP.getPOI()
+            GP.getPOI()  // 获取扫描店铺的数据
         else 
             poiUtils.modeNormal()
     },
+
+    getIndex(){
+        db.index().then(res=>{
+            console.log(res)
+            var poiHash = {
+                "drink": res.data.drink_list,
+                "eat": res.data.eat_list,
+                "play": res.data.play_list,
+                "all": res.data.drink_list.concat(res.data.eat_list).concat(res.data.play_list),
+            }
+            
+            GP.setData({
+                poiHash: poiHash
+            })
+        })
+    },
+
     // 获取poi信息
     getPOI(){
         var poi_uuid = poiUtils.getPOIUUID()  // 获取poi_uuid
@@ -74,7 +112,7 @@ Page({
     },
 
 
-
+    poiEvent(e){console.log(e)},
 
 
     /***********基础功能***********/
@@ -99,6 +137,26 @@ Page({
     //关闭冒泡窗
     toCancle() {
         GP.setData({isShowCallout: false,})
+    },
+
+    // 点击类别标签
+    clickTag(e){
+        // 改颜色
+        var index = e.currentTarget.dataset.index
+        var tagList = GP.data.tagList
+        for (var i = 0;i < tagList.length ; i++)
+            tagList[i].is_select = false
+        tagList[index].is_select = true
+        GP.setData({ tagList: tagList})
+
+        // 设置markers
+        var tagKey = tagList[index].key
+        var poiList = GP.data.poiHash[tagKey]
+        var markers = []
+        markers.push(poiUtils.poiToMarkers(GP.data.poi))
+        for(var i =0; i<poiList.length ; i++)
+            markers.push(poiUtils.poiToMarkers(poiList[i]))
+        GP.setData({ markers: markers})
     },
 
     /**

@@ -24,22 +24,40 @@
         show-compass="true"
         enable-rotate="true"
         scale="{{scale}}"
+        bindtap="toCancle"
     >
         <cover-view class='callout' hidden='{{!isShowCallout}}'>
             <cover-view class='box'>
                 <cover-view>
-                    <cover-view class='poi_title'>{{poi.title}}</cover-view>
+                    <cover-view class='poi_title'>{{poi.name}}</cover-view>
                 </cover-view>
-                <block wx:for="{{articleList}}"  wx:key="index">
-                    <article node="{{item}}"></article>          
-                </block>        
-                <cover-view class='cancle btn' catchtap='toCancle'>关闭</cover-view>
+                <!-- <cover-view class='cancle btn' catchtap='toCancle'>关闭</cover-view> -->
+                <cover-image class='icon_cancel' catchtap='toCancle' src='../../images/icon_cancel.png'></cover-image>
+                <cover-view class='article'>
+                    <block wx:for="{{articleList}}"  wx:key="index">
+                        <article node="{{item}}"></article>          
+                    </block>        
+                    <block wx:for="{{articleList}}"  wx:key="index">
+                        <article node="{{item}}"></article>          
+                    </block>   
+                </cover-view>     
             </cover-view>
         </cover-view>
 
-        <cover-view class='search' >
+        <cover-view class='self' >
             <!-- <cover-view class='btn' catchtap='toEditor'>最近的店</cover-view> -->
             <cover-view class='btn' catchtap='toSelfLocation'>我的位置</cover-view>  
+        </cover-view>
+
+        <cover-view class='tag'>
+            <block wx:for="{{tagList}}" wx:key="index">
+                <cover-image class='icon' 
+                    src='{{item.is_select ?item.select : item.icon}}'
+                    catchtap='clickTag'  data-index='{{index}}'
+                ></cover-image>
+                <!-- <cover-image class='icon' src='{{item.icon}}' wx:else></cover-image> -->
+                <!-- <cover-view class='name'> </cover-view> -->
+            </block>
         </cover-view>
     </map>
 

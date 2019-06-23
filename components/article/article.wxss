@@ -1,27 +1,29 @@
+ .page{
+     /* float: left;
+     width: 120px; */
+ }
+ 
+ 
  .box{
-    display: flex;
-    /* justify-content: space-between; */
 }
 .cover{
-    /* : 96px; */
-    /* flex:1 1 auto; */
-    flex-shrink: 0;
+    display: inline-block;
     width: 96px;
-    /* height: 64px; */
 }
 .content{
     padding-left:10px ;
-    
+    display: inline-block;
+    vertical-align: top;
+    width: calc(750rpx - 60px - 96px - 20px);
     white-space:wrap !important;
 }
-.name {    
+
+.title {    
     font-size: 11pt;
-    text-overflow:ellipsis;
-    /* word-break:break-all;
-    white-space:wrap !important; */
+    white-space: normal; 
 }
 
-.title{
+.summary{
     font-size: 9pt;
     overflow: hidden;
     text-overflow:ellipsis;
@@ -74,7 +76,6 @@
     display: flex;
     align-items: center;
     font-size: 11pt;
-    margin-top: 10px;
 }
 .user_logo{
     border-radius: 50%;
