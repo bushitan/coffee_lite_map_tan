@@ -5,7 +5,8 @@ class poiUtils{
     constructor(_gp, _app){
         GP = _gp
         app = _app
-        this.poi_uuid 
+        this.poi_uuid
+        this.poi_id 
     }
 
     /**
@@ -19,6 +20,7 @@ class poiUtils{
             switch (options.mode){
                 case "poi":
                     this.poi_uuid = options['poi_uuid']
+                    this.poi_id = options['poi_id']
                     return app.POI.MODE_SCAN_TO_POI
                     break
                 default:
@@ -29,8 +31,11 @@ class poiUtils{
     }
 
     // 返回poi_uuid
-    getPOIUUID(){
-        return this.poi_uuid  
+    getPOIUUID() {
+        return this.poi_uuid
+    }
+    getPOIID() {
+        return this.poi_id
     }
 
     modeScanPOI(){
@@ -42,6 +47,7 @@ class poiUtils{
     poiToMarkers(poi){
         // console.log(poi)
         return {
+            uuid: poi.poi_uuid,
             id: poi.id || 0,
             latitude: poi.latitude,
             longitude: poi.longitude,

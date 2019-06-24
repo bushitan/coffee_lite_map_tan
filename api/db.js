@@ -47,9 +47,9 @@ class db {
     searchPOIList(tag_uuid) {
         return this.baseURL(API.SEARCH_POI_LIST, { tag_uuid: tag_uuid })
     }
-    // 获取店铺列表
-    searchPOIDetail(poi_uuid) {
-        return this.baseURL(API.SEARCH_POI_DETAIL, { poi_uuid: poi_uuid })
+    // 获取店铺详情
+    searchPOIDetail(poi_id) {
+        return this.baseURL(API.SEARCH_POI_DETAIL, { poi_id: poi_id })
     }
     // 获取店铺列表
     searchArticleDetail(article_uuid) {

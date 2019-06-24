@@ -29,17 +29,14 @@
         <cover-view class='callout' hidden='{{!isShowCallout}}'>
             <cover-view class='box'>
                 <cover-view>
-                    <cover-view class='poi_title'>{{poi.name}}</cover-view>
+                    <cover-view class='poi_title'>{{poiName}}</cover-view>
                 </cover-view>
                 <!-- <cover-view class='cancle btn' catchtap='toCancle'>关闭</cover-view> -->
                 <cover-image class='icon_cancel' catchtap='toCancle' src='../../images/icon_cancel.png'></cover-image>
                 <cover-view class='article'>
                     <block wx:for="{{articleList}}"  wx:key="index">
                         <article node="{{item}}"></article>          
-                    </block>        
-                    <block wx:for="{{articleList}}"  wx:key="index">
-                        <article node="{{item}}"></article>          
-                    </block>   
+                    </block>     
                 </cover-view>     
             </cover-view>
         </cover-view>

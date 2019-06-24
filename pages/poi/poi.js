@@ -21,8 +21,8 @@ Page({
         markers:[], //地图标记点
         poiHash:{},
         poi:{
-            latitude: '22.81077',
-            longitude: '108.340187'
+            latitude: '22.82519',
+            longitude: '108.35484'
         },
         articleList:[],
         articleNav: {},
@@ -55,7 +55,8 @@ Page({
         GP = this
         options = {
             mode:'poi',
-            poi_uuid:'a17fc138-9243-11e9-9c7f-e95aa2c51b5d'
+            poi_uuid:'b262ba1a-9659-11e9-a36d-e95aa2c51b5d',
+            poi_id:"33",
         }
         mapContext = wx.createMapContext("map")
         options = options //复制全局options
@@ -94,20 +95,25 @@ Page({
 
     // 获取poi信息
     getPOI(){
-        var poi_uuid = poiUtils.getPOIUUID()  // 获取poi_uuid
-        db.searchPOIDetail(poi_uuid).then(res=>{
+        var poi_id = poiUtils.getPOIID()  // 获取poi_uuid
+        GP.setPOI(poi_id)
+    },
+
+    setPOI(poi_id){
+        db.searchPOIDetail(poi_id).then(res => {
             // console.log(res)
             var poi_dict = res.data.poi_dict
             var markers = poiUtils.poiToMarkers(poi_dict)
             var article_list = res.data.article_list
-            var article_nav = poiUtils.getArticleNav(article_list)            
+            var article_nav = poiUtils.getArticleNav(article_list)
             GP.setData({
                 isShowCallout: true,
                 poi: poi_dict,
+                poiName: poi_dict.name,
                 markers: [markers],
                 articleList: article_list,
                 articleNav: article_nav,
-            })           
+            })
         })
     },
 
@@ -120,7 +126,7 @@ Page({
     //跳转到最近的店
     toSelfLocation() {
         //TODO
-        GP.setData({scale: 15,})
+        // GP.setData({scale: 15,})
         mapContext.moveToLocation()
     },
 
@@ -130,9 +136,29 @@ Page({
         // console.log(e)
         var markerId = e.markerId
         console.log(GP.data.markers[markerId])
-        GP.setData({
-            isShowCallout: !GP.data.isShowCallout,
+
+        // GP.setPOI(markerId)
+        wx.showLoading({title:"探店ing"})
+        db.searchPOIDetail(markerId).then(res => {
+            wx.hideLoading()
+            // console.log(res)
+            var poi_dict = res.data.poi_dict
+            // var markers = poiUtils.poiToMarkers(poi_dict)
+            var article_list = res.data.article_list
+            var article_nav = poiUtils.getArticleNav(article_list)
+            GP.setData({
+                isShowCallout: true,
+                poiName:poi_dict.name,
+                // poi: poi_dict,
+                // markers: [markers],
+                articleList: article_list,
+                articleNav: article_nav,
+            })
         })
+
+        // GP.setData({
+        //     isShowCallout: !GP.data.isShowCallout,
+        // })
     },
     //关闭冒泡窗
     toCancle() {
