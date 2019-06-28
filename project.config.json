@@ -42,8 +42,8 @@
 				{
 					"id": 0,
 					"name": "扫描二维码进入poi",
-					"pathName": "pages/poi/poi",
-					"query": "mode=poi&poi_uuid=a17fc138-9243-11e9-9c7f-e95aa2c51b5d",
+					"pathName": "pages/route/route",
+					"query": "mode=poi&poi_id=25",
 					"scene": null
 				}
 			]

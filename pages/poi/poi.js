@@ -6,7 +6,7 @@ var db = new DB()
 var POIUtils = require('poiUtils.js')
 var poiUtils
 var mapContext
-var app = getApp()
+var APP = getApp()
 
 Page({
 
@@ -26,8 +26,8 @@ Page({
         },
         articleList:[],
         articleNav: {},
-        MAP_ARTICLE_TYPE_WX: app.POI.MAP_ARTICLE_TYPE_WX, // 微信
-        MAP_ARTICLE_TYPE_RED: app.POI.MAP_ARTICLE_TYPE_RED, // 小红书
+        MAP_ARTICLE_TYPE_WX: APP.POI.MAP_ARTICLE_TYPE_WX, // 微信
+        MAP_ARTICLE_TYPE_RED: APP.POI.MAP_ARTICLE_TYPE_RED, // 小红书
 
         tagList: [
             {
@@ -53,73 +53,28 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-        options = {
-            mode:'poi',
-            poi_uuid:'b262ba1a-9659-11e9-a36d-e95aa2c51b5d',
-            poi_id:"33",
-        }
         mapContext = wx.createMapContext("map")
-        options = options //复制全局options
-        poiUtils = new POIUtils(GP, app)
-        GP.onInit(options)
-        // wx.showLoading({
-        //     title: '加载中...',
-        // }) 
+        poiUtils = new POIUtils(GP, APP,  options)
+        GP.onInit()
     },    
 
-    onInit(options) {
-        var mode = poiUtils.checkMode(options)
-        console.log(mode)
-        GP.getIndex() // 初始化
-        if (mode == app.POI.MODE_SCAN_TO_POI)
-            GP.getPOI()  // 获取扫描店铺的数据
-        else 
-            poiUtils.modeNormal()
-    },
+    // 初始化
+    onInit(){
+        // poiUtils.getIndex() // 获取初始化信息
+        db.index().then(res => { 
+            poiUtils.setIndex(res)
+            // 正常模式 
+            if (poiUtils.getMode() == APP.ROUTE.MODE_NORMAL)
+                poiUtils.setTagPOI(0) 
+        })
 
-    getIndex(){
-        db.index().then(res=>{
-            console.log(res)
-            var poiHash = {
-                "drink": res.data.drink_list,
-                "eat": res.data.eat_list,
-                "play": res.data.play_list,
-                "all": res.data.drink_list.concat(res.data.eat_list).concat(res.data.play_list),
-            }
+        // 扫描poi二维码模式
+        if (poiUtils.getMode() == APP.ROUTE.MODE_POI) { 
+            var poiID = poiUtils.getPOIID() 
+            db.searchPOIDetail(poiID).then(res => poiUtils.setStorePOI(res) )
+        }
             
-            GP.setData({
-                poiHash: poiHash
-            })
-        })
     },
-
-    // 获取poi信息
-    getPOI(){
-        var poi_id = poiUtils.getPOIID()  // 获取poi_uuid
-        GP.setPOI(poi_id)
-    },
-
-    setPOI(poi_id){
-        db.searchPOIDetail(poi_id).then(res => {
-            // console.log(res)
-            var poi_dict = res.data.poi_dict
-            var markers = poiUtils.poiToMarkers(poi_dict)
-            var article_list = res.data.article_list
-            var article_nav = poiUtils.getArticleNav(article_list)
-            GP.setData({
-                isShowCallout: true,
-                poi: poi_dict,
-                poiName: poi_dict.name,
-                markers: [markers],
-                articleList: article_list,
-                articleNav: article_nav,
-            })
-        })
-    },
-
-
-    poiEvent(e){console.log(e)},
-
 
     /***********基础功能***********/
 
@@ -129,66 +84,26 @@ Page({
         // GP.setData({scale: 15,})
         mapContext.moveToLocation()
     },
-
-
-    //点击冒泡
-    markertap(e) {
-        // console.log(e)
-        var markerId = e.markerId
-        console.log(GP.data.markers[markerId])
-
-        // GP.setPOI(markerId)
-        wx.showLoading({title:"探店ing"})
-        db.searchPOIDetail(markerId).then(res => {
-            wx.hideLoading()
-            // console.log(res)
-            var poi_dict = res.data.poi_dict
-            // var markers = poiUtils.poiToMarkers(poi_dict)
-            var article_list = res.data.article_list
-            var article_nav = poiUtils.getArticleNav(article_list)
-            GP.setData({
-                isShowCallout: true,
-                poiName:poi_dict.name,
-                // poi: poi_dict,
-                // markers: [markers],
-                articleList: article_list,
-                articleNav: article_nav,
-            })
-        })
-
-        // GP.setData({
-        //     isShowCallout: !GP.data.isShowCallout,
-        // })
-    },
     //关闭冒泡窗
     toCancle() {
-        GP.setData({isShowCallout: false,})
+        GP.setData({ isShowCallout: false, })
     },
 
-    // 点击类别标签
-    clickTag(e){
+    // 点击气泡
+    markertap(e) {
+        var markerId = e.markerId
+        db.searchPOIDetail(markerId).then(res => poiUtils.showCallout(res) )
+    },
+
+    clickTag(e) {
         // 改颜色
         var index = e.currentTarget.dataset.index
-        var tagList = GP.data.tagList
-        for (var i = 0;i < tagList.length ; i++)
-            tagList[i].is_select = false
-        tagList[index].is_select = true
-        GP.setData({ tagList: tagList})
-
-        // 设置markers
-        var tagKey = tagList[index].key
-        var poiList = GP.data.poiHash[tagKey]
-        var markers = []
-        markers.push(poiUtils.poiToMarkers(GP.data.poi))
-        for(var i =0; i<poiList.length ; i++)
-            markers.push(poiUtils.poiToMarkers(poiList[i]))
-        GP.setData({ markers: markers})
+        poiUtils.setTagPOI(index) 
     },
-
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-
+    onShareAppMessage: function (res) {
+        return app.onShareAppMessage()
     }
 })

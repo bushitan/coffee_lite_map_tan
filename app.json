@@ -1,8 +1,8 @@
 {
     "pages":[
+        "pages/route/route",
         "pages/poi/poi",
         "pages/wx/wx",
-        "pages/route/route",
         "pages/record/record",
         "pages/edit_detail/edit_detail",
         "pages/edit_attr/edit_attr",

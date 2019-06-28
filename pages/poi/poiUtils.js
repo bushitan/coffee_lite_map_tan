@@ -1,13 +1,114 @@
 
+var DB = require('../../api/db.js')
+var db = new DB()
 var GP 
 var app
 class poiUtils{
-    constructor(_gp, _app){
+    constructor(_gp, _app, options){
         GP = _gp
         app = _app
-        this.poi_uuid
-        this.poi_id 
+        this.mode = options.mode
+        this.poi_id = options.poi_id
+        // this.poi_id 
     }
+
+    // 获取当前模式
+    getMode(){
+        return this.mode
+    }
+
+
+    // 返回poi_id
+    getPOIID() {
+        return this.poi_id
+    }
+
+
+    // 设置index数据模式
+    setIndex(res) {
+        console.log(res)
+        var poiHash = {
+            "drink": res.data.drink_list,
+            "eat": res.data.eat_list,
+            "play": res.data.play_list,
+            "all": res.data.drink_list.concat(res.data.eat_list).concat(res.data.play_list),
+        }
+
+        GP.setData({
+            poiHash: poiHash
+        })
+        
+    }
+
+
+    // 搜索指定poi点
+    setStorePOI(res){
+        var poi_dict = res.data.poi_dict
+        var markers = this.poiToMarkers(poi_dict)
+        var article_list = res.data.article_list
+        var article_nav = this.getArticleNav(article_list)
+        GP.setData({
+            isShowCallout: true,
+            poi: poi_dict,
+            poiName: poi_dict.name,
+            markers: [markers],
+            articleList: article_list,
+            articleNav: article_nav,
+        })
+    }
+
+    // 显示“喝”的列表
+    setTagPOI(index){
+        // 改颜色
+        // var index 
+        var tagList = GP.data.tagList
+        for (var i = 0; i < tagList.length; i++)
+            tagList[i].is_select = false
+        tagList[index].is_select = true
+        GP.setData({ tagList: tagList })
+
+        // 设置markers
+        var tagKey = tagList[index].key
+        var poiList = GP.data.poiHash[tagKey]
+        var markers = []
+        // markers.push(this.poiToMarkers(GP.data.poi))
+        for (var i = 0; i < poiList.length; i++)
+            markers.push(this.poiToMarkers(poiList[i]))
+        GP.setData({ markers: markers })
+    }
+
+
+    showCallout(res){
+        // console.log(res)
+        var poi_dict = res.data.poi_dict
+        // var markers = poiUtils.poiToMarkers(poi_dict)
+        var article_list = res.data.article_list
+        var article_nav = this.getArticleNav(article_list)
+        GP.setData({
+            isShowCallout: true,
+            poiName: poi_dict.name,
+            // poi: poi_dict,
+            // markers: [markers],
+            articleList: article_list,
+            articleNav: article_nav,
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @method 检测进入的模型，
@@ -30,14 +131,7 @@ class poiUtils{
             return app.POI.MODE_NORMAL
     }
 
-    // 返回poi_uuid
-    getPOIUUID() {
-        return this.poi_uuid
-    }
-    getPOIID() {
-        return this.poi_id
-    }
-
+   
     modeScanPOI(){
         console.log(GP)
     }

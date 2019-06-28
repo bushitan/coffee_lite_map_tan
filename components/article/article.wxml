@@ -16,6 +16,8 @@
         class='cover' 
         src='{{node.qr + "?imageView2/1/w/96/h/96"}}' 
         
+        catchtap='toRedCover' 
+        data-cover="{{node.qr}}"
         mode='center'
     ></cover-image>
     <cover-view class='content'>
