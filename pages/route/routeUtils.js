@@ -20,11 +20,23 @@ class RouteUtils{
     
     getMode(options){
         if (options.hasOwnProperty("mode")){
-            this.poi_id = options.poi_id
-            return APP.ROUTE.MODE_POI
+            var mode = options.mode
+            if (mode == APP.ROUTE.MODE_STORE){
+                wx.redirectTo({
+                    url: `/pages/poi/poi?mode=${mode}&poi_id=${options.poi_id}`,
+                })
+            } else{
+                wx.redirectTo({
+                    url: `/pages/poi/poi?mode=${mode}&store_id=${options.store_id}`,
+                })
+            }
+
         }
         else
-            return APP.ROUTE.MODE_NORMAL
+            wx.redirectTo({
+                url: `/pages/poi/poi?mode=${APP.ROUTE.MODE_NORMAL}`,
+            })
+            // return APP.ROUTE.MODE_NORMAL
 
     }
 

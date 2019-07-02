@@ -26,17 +26,18 @@ Page({
             title: '加载中...',
         }) 
         routeUtils = new RouteUtils(GP, APP)
-        var mode = routeUtils.getMode(options)
-        var poiID = routeUtils.getPOIID() 
+        routeUtils.getMode(options)
+        // var mode = routeUtils.getMode(options)
+        // var poiID = routeUtils.getPOIID() 
         // debugger
-        GP.navToPOI(mode, poiID)
+        // GP.navToPOI(mode, poiID)
     },    
 
-    navToPOI(mode, poiID){
-        wx.redirectTo({
-            url: `/pages/poi/poi?mode=${mode}&poi_id=${poiID}`,
-        })
-    },
+    // navToPOI(mode, poiID){
+    //     wx.redirectTo({
+    //         url: `/pages/poi/poi?mode=${mode}&poi_id=${poiID}`,
+    //     })
+    // },
 
 
     /**
