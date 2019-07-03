@@ -13,9 +13,9 @@ App({
     },
 
     ROUTE:{
-        MODE_NORMAL: "mode_normal",
-        MODE_POI: "mode_poi",
-        MODE_STORE: "mode_store",
+        MODE_NORMAL: "normal",
+        MODE_POI: "poi",
+        MODE_STORE: "store",
     },
 
     // 基础的分享页面功能

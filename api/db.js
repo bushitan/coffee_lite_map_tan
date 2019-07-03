@@ -56,6 +56,12 @@ class db {
         return this.baseURL(API.SEARCH_ARTICLE_DETAIL, { article_uuid: article_uuid })
     }
 
+
+    // 根据店铺id，获取poi_list
+    searchPOIStore(store_id) {
+        return this.baseURL(API.SEARCH_POI_STORE, { store_id: store_id })
+    }
+
 }
 
 module.exports = db

@@ -21,12 +21,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options)
         GP = this
         wx.showLoading({
             title: '加载中...',
         }) 
         routeUtils = new RouteUtils(GP, APP)
         routeUtils.getMode(options)
+        // debugger
         // var mode = routeUtils.getMode(options)
         // var poiID = routeUtils.getPOIID() 
         // debugger

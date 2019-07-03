@@ -27,6 +27,9 @@ module.exports = {
     INDEX: `${URL}index/`,
     SEARCH_POI_LIST: `${URL}search/poi/list/`,
     SEARCH_POI_DETAIL: `${URL}search/poi/detail/`,
-    SEARCH_ARTICLE_DETAIL: `${URL}search/article/detail/`,    
+    SEARCH_ARTICLE_DETAIL: `${URL}search/article/detail/`,
+    SEARCH_POI_STORE: `${URL}search/poi/store/`, // 根据store_id 获取 poi_list
+
+    
 }
 

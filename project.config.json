@@ -37,13 +37,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "扫描二维码进入poi",
 					"pathName": "pages/route/route",
 					"query": "mode=poi&poi_id=25",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "poi/poi/store_id=17",
+					"pathName": "pages/poi/poi",
+					"query": "mode=store&store_id=17",
 					"scene": null
 				}
 			]

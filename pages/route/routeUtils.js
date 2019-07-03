@@ -21,14 +21,18 @@ class RouteUtils{
     getMode(options){
         if (options.hasOwnProperty("mode")){
             var mode = options.mode
-            if (mode == APP.ROUTE.MODE_STORE){
+            if (mode == APP.ROUTE.MODE_POI){
+
+                // debugger
                 wx.redirectTo({
                     url: `/pages/poi/poi?mode=${mode}&poi_id=${options.poi_id}`,
                 })
+                return
             } else{
                 wx.redirectTo({
                     url: `/pages/poi/poi?mode=${mode}&store_id=${options.store_id}`,
                 })
+                return
             }
 
         }

@@ -7,8 +7,9 @@ class poiUtils{
     constructor(_gp, _app, options){
         GP = _gp
         app = _app
-        this.mode = options.mode
-        this.poi_id = options.poi_id
+        this.mode = options.mode || ""
+        this.poi_id = options.poi_id || ""
+        this.store_id = options.store_id || ""
         // this.poi_id 
     }
 
@@ -21,6 +22,10 @@ class poiUtils{
     // 返回poi_id
     getPOIID() {
         return this.poi_id
+    }
+    // 返回poi_id
+    getStoreID() {
+        return this.store_id
     }
 
 
@@ -56,6 +61,21 @@ class poiUtils{
             articleNav: article_nav,
         })
     }
+
+    // 根据店铺搜索POIlist
+    setPOIList(res) {
+        var poi_list = res.data.poi_list
+        var first = poi_list[0]
+        var markers = []
+        // debugger
+        for (var i = 0; i < poi_list.length; i++)
+            markers.push(this.poiToMarkers(poi_list[i]))
+        GP.setData({
+            markers: markers,
+        })
+        return markers
+    }
+
 
     // 显示“喝”的列表
     setTagPOI(index){
@@ -141,7 +161,7 @@ class poiUtils{
     poiToMarkers(poi){
         // console.log(poi)
         return {
-            uuid: poi.poi_uuid,
+            uuid: poi.uuid,
             id: poi.id || 0,
             latitude: poi.latitude,
             longitude: poi.longitude,

@@ -56,24 +56,35 @@ Page({
         mapContext = wx.createMapContext("map")
         poiUtils = new POIUtils(GP, APP,  options)
         GP.onInit()
+        // debugger
     },    
 
     // 初始化
     onInit(){
+        var mode = poiUtils.getMode()
         // poiUtils.getIndex() // 获取初始化信息
         db.index().then(res => { 
             poiUtils.setIndex(res)
             // 正常模式 
-            if (poiUtils.getMode() == APP.ROUTE.MODE_NORMAL)
+            if (mode == APP.ROUTE.MODE_NORMAL)
                 poiUtils.setTagPOI(0) 
         })
 
         // 扫描poi二维码模式
-        if (poiUtils.getMode() == APP.ROUTE.MODE_POI) { 
+        if (mode == APP.ROUTE.MODE_POI) { 
             var poiID = poiUtils.getPOIID() 
             db.searchPOIDetail(poiID).then(res => poiUtils.setStorePOI(res) )
         }
-            
+        // debugger
+        // 扫描poi二维码模式
+        if (mode == APP.ROUTE.MODE_STORE) {
+            var store_id = poiUtils.getStoreID()
+            db.searchPOIStore(store_id).then(res => {
+                var markers = poiUtils.setPOIList(res)
+                mapContext.includePoints({points:markers})
+
+            })
+        }
     },
 
     /***********基础功能***********/
