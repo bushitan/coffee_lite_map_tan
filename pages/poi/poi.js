@@ -82,7 +82,6 @@ Page({
             db.searchPOIStore(store_id).then(res => {
                 var markers = poiUtils.setPOIList(res)
                 mapContext.includePoints({points:markers})
-
             })
         }
     },
@@ -111,6 +110,14 @@ Page({
         var index = e.currentTarget.dataset.index
         poiUtils.setTagPOI(index) 
     },
+
+    // 刷新
+    refresh(){
+        wx.redirectTo({
+            url: '/pages/route/route',
+        })
+    },
+
     /**
      * 用户点击右上角分享
      */

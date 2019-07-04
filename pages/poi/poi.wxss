@@ -135,6 +135,7 @@
     position: fixed;
     bottom: 10px; 
     right: 15px;
+    padding: 5px;
     /* display: flex;
     flex-direction: column;
     justify-content: center;
@@ -147,6 +148,8 @@
     height: 42px;
     /* margin:10px auto 0; */
     margin-bottom: 15px;
+    border-radius: 50%;
+    background-color:rgba(243, 142, 124, 0.6);
 }
 .tag .name{
     margin-top: 5px;
@@ -155,4 +158,21 @@
     background-color: #888;
     color: #ffffff;
     font-size: 11pt;
+}
+
+/*********刷新**********/
+.refresh{
+    position: fixed;
+    bottom: 10px; 
+    left: 15px;
+    padding: 5px;
+    color: rgba(255, 255, 255, 0)
+}
+.refresh .btn {
+    font-size: 11pt;
+    background-color: #ffbc34;
+    color: #fff;
+    padding: 10px 25px;
+    /* padding: 30px; */
+    border-radius: 20px;
 }

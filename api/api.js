@@ -11,8 +11,8 @@ var APP_ID = "wxd2f409241725502b"
 
 
 // var HOST = "https://www.51zfgx.com/"  // 第2正式版本
-// var HOST = "https://www.51zfgx.com/coffee_server_2019_6_15_v1_3_10/" //第2正式版本
-var HOST = "https://www.51zfgx.com/dev/" //测试版本
+var HOST = "https://www.51zfgx.com/coffee_server_2019_6_15_v1_3_10/" //第2正式版本
+// var HOST = "https://www.51zfgx.com/dev/" //测试版本
 var URL = HOST + "map/"
 
 module.exports = {

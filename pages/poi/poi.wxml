@@ -56,6 +56,11 @@
                 <!-- <cover-view class='name'> </cover-view> -->
             </block>
         </cover-view>
+
+        <cover-view class='refresh' catchtap='refresh'>
+            刷新
+        </cover-view>
+
     </map>
 
 </view>
