@@ -1,0 +1,2 @@
+<!--pages/webgl/webgl.wxml-->
+<canvas type="webgl" id="myCanvas" class="webgl"></canvas>

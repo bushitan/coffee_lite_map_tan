@@ -1,0 +1,5 @@
+/* pages/webgl/webgl.wxss */
+
+.webgl{
+    background-color: #eee;
+}
