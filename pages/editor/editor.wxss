@@ -1,0 +1,5 @@
+/* pages/editor/editor.wxss */
+
+.radio{
+    margin-top:5px
+}

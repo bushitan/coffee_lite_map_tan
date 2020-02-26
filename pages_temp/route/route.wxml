@@ -1,0 +1,11 @@
+
+
+<view hidden='{{!isShowLogin}}'>
+    <view style='height:30px;'></view>
+    <view class='box'>
+        <image class='userinfo-avatar' src='../../images/user-unlogin.png'></image>
+    </view>
+    <view class='login'>
+        <button size='mini' type='primary'  open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">登录</button>
+    </view>
+</view>

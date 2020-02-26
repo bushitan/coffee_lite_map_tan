@@ -1,2 +1,96 @@
+<!--pages/my/my.wxml-->
+
+<view class="cu-list menu padding-tb ">
+    <view class="cu-item " style="background-color: transparent;">
+        <view class="action">
+                <image src='{{userInfo.avatarUrl}}' 
+                    class="cu-avatar round  bg-darkGray margin-right" 
+                    style="width: 60px;height: 60px;"></image>
+                <button  class="cu-btn round text-white bg-blue text-bold text-df"
+                open-type="getUserInfo" bindgetuserinfo="getUSerInfo">
+                    {{userInfo.nickName || "登录"}}
+                </button>   
+        </view>
+        
+                <!-- <open-data type="userAvatarUrl" 
+                    class="cu-avatar  pg-radius  bg-gray margin-right"   
+                    style="width: 60px;height: 60px;"></open-data>    -->
+            <!-- <image src='{{userInfo.logo}}' 
+                    class="cu-avatar round  bg-gray margin-right" 
+                 style="width: 72px;height: 72px;"
+                 
+                ></image> -->
+                <!-- <text class="text-brown text-bold text-df" wx-if="{{userInfo.name}}">{{userInfo.name}}</text>
+            <button class="cu-btn round text-white bg-blue text-bold text-df" v-else>登陆</button> -->
+        <!-- <view class="action">
+            <button class="cu-btn round text-yellow text-bold" catchtap="deleteEmployee" > 删除</button>
+        </view> -->
+    </view>
+</view>
 
 
+<view class="cu-card padding-lr margin-top">
+    <view class=" pg-radius  shadow shadow-warp bg-white">
+        <image  src="/images/strong/banner.jpg" mode="widthFix" class="pg-image-block"></image>
+    </view>
+</view>
+
+<view class="cu-timeline">
+    <!-- <view class="cu-time">我的收藏</view> -->
+    <view class="cu-item" wx:for="{{markerList}}">
+        <view class="content">
+            <view class="flex justify-between">            
+                <view class="cu-capsule radius">
+                    <view class="cu-tag bg-yellow text-white">{{item.name}}</view>
+                    <view class="cu-tag line-yellow" catchtap="copyTel"  data-tel="{{item.tel}}" >联系方式:{{item.tel}}</view>
+                </view>
+                <view>
+                     <view class="cu-tag line-red" catchtap="deleteLove" data-marker_id="{{item._id}}">取消收藏</view>
+                </view>
+            </view>
+            <view class="margin-top">{{item.notice}}</view>
+            <view hidden="{{item.coverUrl==''}}">        
+                <image src='{{item.coverUrl}}' mode='widthFix' bindtap="ViewImage" data-url="{{item.coverUrl}}"></image>
+            </view>
+            <view class="cu-form-group bg-gray margin-top-sm" style="padding: 1rpx 0rpx;"hidden="{{item.imageList.length == 0 }}" >
+                <view class="grid col-3 grid-square flex-sub">
+               
+                    <view class="bg-img" wx:for="{{item.imageList}}" wx:for-index="jindex" wx:for-item="j" bindtap="ViewImage" data-url="{{j}}"   > 
+                    <!-- {{j}}
+                    {{j.imageList[jindex]}} + 1 -->
+                        <image src='{{j}}' mode='aspectFit' class="bg-white"></image>
+                    </view>
+                    <!-- <view class="solids" bindtap="ChooseImage" wx:if="{{item.imageList.length<imageMax}}">
+                        <text class="cuIcon-cameraadd"></text>
+                    </view> -->
+                </view>
+            </view>    
+        </view>
+    </view>
+</view>
+
+<view class="text-gray text-center margin-top">地图能力持续优化中</view>
+<view class="text-gray text-center margin-top-xs">精选内容请关注同名公众号"探店小地图"</view>
+
+<view class="pg-space-xxl"></view>
+
+<view class="text-gray text-center text-sm dialog" wx:if="{{showDialog}}">
+    <view>^</view>
+    <view>"添加到我的小程序"</view>
+    <view>订阅更方便</view>
+</view>
+<!-- <view class="cu-card padding-lr margin-top ">
+    <view class=" pg-radius  shadow shadow-warp bg-white">
+        <view class="cu-bar  solid-bottom ">
+            <view class="action">
+                <image src="/images/icon/visitor.png" style="width:23px;height:23px;"  class="pg-image-block"></image>               
+                <text class="text-black text-sm">我的足迹</text>      
+            </view>
+            <view class="action">
+                <text class="text-grey  text-sm" catchtap="openMini">一件收藏，即将上线</text>
+                <button class="text-grey  text-sm" open-type="openSetting">打开setting</button>
+                <view class="pg-arrow"></view>
+            </view>
+        </view>
+    </view>
+</view> -->

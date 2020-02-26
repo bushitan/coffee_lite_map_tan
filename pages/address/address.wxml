@@ -1,0 +1,41 @@
+<!--pages/address/address.wxml-->
+
+<view wx:for="{{addressList}}" wx:key="index">
+   <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class="action">
+            <text class="cuIcon-title text-blue"></text>地址{{index + 1}} -- 经度:{{item.longitude}},纬度:{{item.latitude}}
+        </view>
+        <view class="action">
+            <text class="cu-btn bg-grey shadow " catchtap="toStoreView" style="margin-right:5px;" catchtap="deleteAddress" data-index="{{index}}" >删除</text>
+        </view>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">地址：</view>
+        <input placeholder="请输入分店名称" value="{{item.address}}" bindinput="inputAddress" data-index="{{index}}"></input>        
+    </view>
+    
+    <view class="cu-form-group ">
+        <view class="title">分店名：</view>
+        <input placeholder="请输入分店名称" value="{{item.name}}" bindinput="inputName" data-index="{{index}}"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">配送时间：</view>
+        <input placeholder="请输入配送时间" value="{{item.des}}" bindinput="inputDes" data-index="{{index}}"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">配送半径：</view>
+        <input placeholder="请输入配送半径(m)" value="{{item.radius}}" type="number" bindinput="inputRadius" data-index="{{index}}"></input>
+    </view>
+</view>
+
+    <view class="pg-flex-center  margin-top">
+        <button class="cu-btn round bg-red  text-white lg" catchtap="addAddress"  wx:if="{{isAuthorLocaiton}}">增加地址</button>
+        <button class="cu-btn round bg-red  text-white lg" bindtap="openSetting" wx:else>授权打开地址</button> 
+    </view>
+
+    <view class="pg-flex-center  margin-top" >
+        <button class="cu-btn round bg-blue text-white lg" catchtap="save">确认</button> 
+    </view>
+    <view class="pg-flex-center  margin-top" >
+        <button class="cu-btn round bg-grey text-white lg" catchtap="toBack">返回</button> 
+    </view>

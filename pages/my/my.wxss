@@ -1,0 +1,12 @@
+/* pages/my/my.wxss */
+
+.dialog{
+    position: fixed;
+
+    top: 2px;
+    right: 18px;
+    padding: 3px;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: rgba(29, 42, 109, 0.6);
+}
