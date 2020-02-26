@@ -1,0 +1,85 @@
+<!--pages/editor/editor.wxml-->
+
+<!-- XX店外卖食品安全可追踪；装餐安全可追踪；送餐安全可追踪。请放心食用！
+
+外卖预定：（微信号） -->
+
+<form bindsubmit="save">
+
+	<view class="cu-form-group margin-top">
+		<view class="title">1、名字</view>
+		<input placeholder="请输入店铺名字" name="name" value="{{store.name}}" ></input>
+	</view>
+	<view class="cu-form-group ">
+		<view class="title">2、悬浮框</view>
+		<input placeholder="请输入悬浮框" name="callout" value="{{store.callout}}" ></input>
+	</view>
+	<view class="cu-form-group ">
+		<view class="title">3、公告</view>
+		<textarea placeholder="请输入公告（限制200字）" maxlength="200"  name="notice" value="{{store.notice}}"></textarea>
+	</view>
+	<view class="cu-form-group ">
+		<view class="title">4、联系方式</view>
+		<input placeholder="可填写--订购外卖联系:XXX"  name="tel" value="{{store.tel}}"></input>
+	</view>  
+	<view class="cu-form-group">
+		<view class="title">5、marker地址</view>
+        <picker disabled="{{true}}" catchtap="toAddress">
+            <view class="picker">
+                {{addressList.length}}个门店
+            </view>
+        </picker>
+	</view>
+
+
+    <view class="cu-bar bg-white  cu-form-group ">
+        <view class="action" style="margin-left: 0rpx;">
+           6、封面图片
+        </view>
+        <view class="action">
+            {{logoList.length}}/{{logoMax}}
+        </view>
+    </view>
+    <view></view>
+    <view class="cu-form-group">
+        <view class="grid col-5 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{logoList}}" wx:key="index" bindtap="ViewLogo" data-url="{{logoList[index]}}">
+                <image src='{{logoList[index]}}' mode='aspectFit'></image>
+                <view class="cu-tag bg-red" catchtap="DelLogo" data-index="{{index}}">
+                    <text class="cuIcon-close"></text>
+                </view>
+            </view>
+            <view class="solids" bindtap="ChooseLogo" wx:if="{{logoList.length<logoMax}}">
+                <text class="cuIcon-cameraadd"></text>
+            </view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white  cu-form-group ">
+        <view class="action"  style="margin-left: 0rpx;">
+           7、内容图片
+        </view>
+        <view class="action">
+            {{imgList.length}}/{{imageMax}}
+        </view>
+    </view>
+    <view></view>
+    <view class="cu-form-group">
+        <view class="grid col-5 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+                <image src='{{imgList[index]}}' mode='aspectFit'></image>
+                <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                    <text class="cuIcon-close"></text>
+                </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<imageMax}}">
+                <text class="cuIcon-cameraadd"></text>
+            </view>
+        </view>
+    </view>    
+    
+    <view class="pg-flex-center   padding-xl">
+        <button class="cu-btn round bg-red block  text-white lg" form-type="submit">保存</button>
+    </view>
+
+    <view class="pg-space-60"></view>
+</form>

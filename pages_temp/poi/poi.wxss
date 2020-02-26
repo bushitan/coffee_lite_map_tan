@@ -1,14 +1,11 @@
-/* pages/poi/poi.wxss */
 
 /******冒泡*******/
 .callout{
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    /* bottom: 20px; */
-    overflow: hidden;
-    /* padding: 15px; */
+    /* position: absolute; */
+    top: 10px;
+    left: 30px;
+    right: 30px;
+    padding: 15px;
 }
 .callout .box{
     position: relative;
@@ -124,29 +121,13 @@
 }
 .self .btn {
     font-size: 11pt;
-    background-color: #efaf30;
+    background-color: #ffbc34;
     color: #fff;
     padding: 10px 25px;
     /* padding: 30px; */
     border-radius: 20px;
 }
 
-
-.nav_btn {
-    /* position: absolute; */
-    /* bottom: 20px; */
-    /* width: 100%; */
-    display: flex;
-    justify-content: center;
-}
-.nav_btn .btn {
-    font-size: 11pt;
-    /* background-color: #1d2a6d; */
-    /* color: #fff; */
-    padding: 10px 25px;
-    /* padding: 30px; */
-    border-radius: 20px;
-}
 
 
 /**********分类**********/
@@ -194,34 +175,4 @@
     padding: 10px 25px;
     /* padding: 30px; */
     border-radius: 20px;
-}
-
-
-
-
-.footer_btn{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #ffffff;
-    padding:15px 15px 15px;
-    z-index:9999999;
-}
-.notice{
-    display: -webkit-box;
-    /* overflow: hidden; */
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    white-space: normal !important;
-    /* -webkit-line-clamp: 5; */
-    -webkit-box-orient: vertical;
-}
-.detail_cover{
-    width: 100%;
-    display:block;
-    height: auto;
-    /* height: calc( 100vh - 300px ); */
-    /* width: calc(750rpx - 30px - 30px); */
-    /* height: calc(750rpx - 30px - 30px); */
 }

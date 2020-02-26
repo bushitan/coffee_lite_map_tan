@@ -1,7 +1,15 @@
 //app.js
+var db = require('db/db.js')
 App({
+    db: db,
     onLaunch: function () {
-    
+
+        if (wx.cloud) {
+            wx.cloud.init({
+                env: "relese-tan",
+                traceUser: true
+            })
+        }
     },
     
     POI: {
@@ -18,6 +26,14 @@ App({
         MODE_STORE: "store",
     },
 
+
+
+    getPrePage() {
+        var pre = getCurrentPages()[getCurrentPages().length - 2]
+        return pre
+    },
+
+
     // 基础的分享页面功能
     onShareAppMessage(res) {
         if (res.from === 'button') {
@@ -33,3 +49,11 @@ App({
     },
 
 })
+
+    // ,
+    // {
+    //     "pagePath": "pages/editor/editor",
+    //     "text": "编辑",
+    //     "iconPath": "images/icon/my_un.png",
+    //     "selectedIconPath": "images/icon/my.png"
+    // }

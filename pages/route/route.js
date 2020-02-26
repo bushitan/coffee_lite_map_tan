@@ -1,46 +1,61 @@
-// pages/user/user.js
-var GP
-var API = require('../../api/api.js')
-var DB = require('../../api/db.js')
-var db = new DB()
-
-var RouteUtils = require('routeUtils.js')
-var routeUtils
-var APP = getApp()
-
+// pages/route/route.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        isShowLogin:false,
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options)
-        GP = this
-        wx.showLoading({
-            title: '加载中...',
-        }) 
-        routeUtils = new RouteUtils(GP, APP)
-        routeUtils.getMode(options)
-        // debugger
-        // var mode = routeUtils.getMode(options)
-        // var poiID = routeUtils.getPOIID() 
-        // debugger
-        // GP.navToPOI(mode, poiID)
-    },    
 
-    // navToPOI(mode, poiID){
-    //     wx.redirectTo({
-    //         url: `/pages/poi/poi?mode=${mode}&poi_id=${poiID}`,
-    //     })
-    // },
+    },
 
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
 
     /**
      * 用户点击右上角分享
