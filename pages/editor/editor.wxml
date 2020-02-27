@@ -5,7 +5,9 @@
 外卖预定：（微信号） -->
 
 <form bindsubmit="save">
-
+    <view class="cu-form-group " wx:if="{{store._id}}">
+		<view class="title">ID:{{store._id}}</view>
+	</view>
 	<view class="cu-form-group margin-top">
 		<view class="title">1、名字</view>
 		<input placeholder="请输入店铺名字" name="name" value="{{store.name}}" ></input>
@@ -77,6 +79,12 @@
         </view>
     </view>    
     
+	<view class="cu-form-group">
+		<view class="title">8、是否展示</view>
+        <view class=" text-right basis-lg">						
+            <switch class="switch-mode radius sm" checked="{{store.isShow}}" name="isShow"></switch>
+        </view>
+	</view>
     <view class="pg-flex-center   padding-xl">
         <button class="cu-btn round bg-red block  text-white lg" form-type="submit">保存</button>
     </view>

@@ -1,0 +1,227 @@
+/* pages/poi/poi.wxss */
+
+/******冒泡*******/
+.callout{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    /* bottom: 20px; */
+    overflow: hidden;
+    /* padding: 15px; */
+}
+.callout .box{
+    position: relative;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.poi_title{
+    font-size: 11pt;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+
+.callout .cover{
+    width: 96px;
+    height: 64px;
+}
+.callout .content{
+    padding-left:10px 
+}
+.callout .name {    
+    width:100px;
+    font-size: 11pt;
+}
+.callout .title{
+    font-size: 9pt;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin: 3px 0 ;
+}
+.callout .distance{
+    font-size: 9pt;
+    color: #888;
+}
+.callout .tool{
+    display: flex;
+    /* justify-content: flex-end; */
+    margin-top: 5px;
+}
+.callout .btn{
+    font-size: 9pt;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+.callout .nav{
+    background-color:#ffbc34;
+    margin-right: 10px;
+
+}
+.callout .collect{
+    background-color:yellowgreen;
+    margin-right: 10px;
+}
+.callout .cancle{
+    background-color:#eee;
+    color: #141414;
+    text-align: center;
+    margin-top: 10px;
+}
+.callout .article{
+    overflow: scroll;
+    max-height: 60vh;
+    margin-top: 15px;
+}
+
+
+/*********icon_cancel******/
+.icon_cancel{
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 23px;
+    height: 23px;
+
+}
+
+
+.user{
+    display: flex;
+    align-items: center;
+}
+.user_logo{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin:10px 10px 10px 0;
+}
+
+
+
+
+
+
+
+/* *********地图*********** */
+.map{
+    width: 100vw;
+    /* height: calc( 100vh - 57px ); */
+    height: calc( 100vh );
+    /* height: calc( 100vh - 57px - 20px ); */
+}
+
+
+.self {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.self .btn {
+    font-size: 11pt;
+    background-color: #efaf30;
+    color: #fff;
+    padding: 10px 25px;
+    /* padding: 30px; */
+    border-radius: 20px;
+}
+
+
+.nav_btn {
+    /* position: absolute; */
+    /* bottom: 20px; */
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+}
+.nav_btn .btn {
+    font-size: 11pt;
+    /* background-color: #1d2a6d; */
+    /* color: #fff; */
+    padding: 10px 25px;
+    /* padding: 30px; */
+    border-radius: 20px;
+}
+
+
+/**********分类**********/
+.tag{
+    position: fixed;
+    bottom: 10px; 
+    right: 15px;
+    padding: 5px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center; */
+    text-align: center;
+    /* font-size:  */
+}
+.tag .icon{
+    width: 42px;
+    height: 42px;
+    /* margin:10px auto 0; */
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background-color:rgba(243, 142, 124, 0.6);
+}
+.tag .name{
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #888;
+    color: #ffffff;
+    font-size: 11pt;
+}
+
+/*********刷新**********/
+.refresh{
+    position: fixed;
+    bottom: 10px; 
+    left: 15px;
+    padding: 5px;
+    color: rgba(255, 255, 255, 0)
+}
+.refresh .btn {
+    font-size: 11pt;
+    background-color: #ffbc34;
+    color: #fff;
+    padding: 10px 25px;
+    /* padding: 30px; */
+    border-radius: 20px;
+}
+
+
+
+
+.footer_btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    padding:15px 15px 15px;
+    z-index:9999999;
+}
+.notice{
+    display: -webkit-box;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    /* -webkit-line-clamp: 5; */
+    -webkit-box-orient: vertical;
+}
+.detail_cover{
+    width: 100%;
+    display:block;
+    height: auto;
+    /* height: calc( 100vh - 300px ); */
+    /* width: calc(750rpx - 30px - 30px); */
+    /* height: calc(750rpx - 30px - 30px); */
+}

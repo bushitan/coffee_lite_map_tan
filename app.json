@@ -4,6 +4,7 @@
         "pages/my/my",
         "pages/route/route",
         "pages/editor/editor",
+        "pages/edt_poi/edt_poi",
 
         "pages_temp/route/route",
         "pages_temp/poi/poi",
@@ -42,6 +43,12 @@
                 "text": "收藏",
                 "iconPath": "images/icon/my_un.png",
                 "selectedIconPath": "images/icon/my.png"
+            },
+            {
+                "pagePath": "pages/edt_poi/edt_poi",
+                "text": "编辑地图",
+                "iconPath": "images/icon/address_un.png",
+                "selectedIconPath": "images/icon/address_un.png"
             }
         ]
     },

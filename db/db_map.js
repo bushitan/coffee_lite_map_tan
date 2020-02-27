@@ -34,6 +34,43 @@ class dbMap extends dbFather {
         })
     }
 
+    // 获取详情
+    mapGetDetail(data) {
+        return new Promise((reslove, reject) => {
+            wx.showLoading()
+            wx.cloud.callFunction({
+                name: 'map_get_detail',
+                data: data,
+                success: res => {
+                    wx.hideLoading()
+                    reslove(res.result)
+                },
+                fail: res => {
+                    console.log(res)
+                },
+            })
+        })
+    }
+
+
+    // 获取所有店铺信息，编辑用
+    mapGetEdtList() {
+        return new Promise((reslove, reject) => {
+            wx.showLoading()
+            wx.cloud.callFunction({
+                name: 'map_edt_get',
+                // data: obj,
+                success: res => {
+                    wx.hideLoading()
+                    reslove(res.result.data)
+                },
+                fail: res => {
+                    console.log(res.result)
+                },
+            })
+        })
+    }
+
     /**
      * @method 增加坐标点
      */

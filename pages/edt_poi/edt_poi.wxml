@@ -59,18 +59,14 @@
             <cover-view class='nav_btn ' >
                 <cover-view class='btn bg-gray text-black margin-right-sm' catchtap="toNavMap" 
                     data-longitude="{{marker.location.coordinates[0]}}"
-                    data-latitude="{{marker.location.coordinates[1]}}" >导航</cover-view>
-                <!-- <cover-view class='btn bg-blue ' catchtap="copyTel" 
-                data-tel="{{marker.tel}}" >复制联系方式</cover-view>     -->
-               
-                <cover-view class='btn {{isLove?"bg-red text-white":"bg-gray text-red"}} ' catchtap="love" 
-                >{{isLove?"已收藏":"收藏"}}</cover-view>    
+                    data-latitude="{{marker.location.coordinates[1]}}" >导航</cover-view>               
+                <cover-view class='btn bg-gray text-red' catchtap="toEdt" 
+                data-marker_id="{{marker._id}}" >编辑</cover-view>    
             </cover-view>
         </cover-view>
 
         <cover-view class='self' hidden='{{isShowCallout}}'>
-            <cover-view class='btn text-white margin-right-sm' catchtap='toSelfLocation'>我的位置</cover-view>  
-            <cover-view class='btn text-white  ' catchtap='refresh'>刷新</cover-view>  
+            <cover-view class='btn text-white' catchtap='toAdd'>新增</cover-view>  
         </cover-view>
 
 

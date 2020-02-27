@@ -31,29 +31,6 @@ Page({
             latitude: '22.82519',
             longitude: '108.35484'
         },
-        articleList: [],
-        articleNav: {},
-        MAP_ARTICLE_TYPE_WX: APP.POI.MAP_ARTICLE_TYPE_WX, // 微信
-        MAP_ARTICLE_TYPE_RED: APP.POI.MAP_ARTICLE_TYPE_RED, // 小红书
-
-        tagList: [
-            {
-                "name": "喝", "key": "drink", "is_select": false,
-                "icon": "../../images/tag/tag_drink.png", "select": "../../images/tag/tag_drink_select.png",
-            },
-            {
-                "name": "吃", "key": "eat", "is_select": false,
-                "icon": "../../images/tag/tag_eat.png", "select": "../../images/tag/tag_eat_select.png",
-            },
-            {
-                "name": "玩", "key": "play", "is_select": false,
-                "icon": "../../images/tag/tag_play.png", "select": "../../images/tag/tag_play_select.png",
-            },
-            {
-                "name": "全部", "key": "all", "is_select": false,
-                "icon": "../../images/tag/tag_all.png", "select": "../../images/tag/tag_all_select.png",
-            },
-        ],
     },
 
     /**
@@ -77,7 +54,7 @@ Page({
 
     async onInit(){
 
-        var list = await app.db.mapGetList()
+        var list = await app.db.mapGetEdtList()
         var markers = this.markerChange(list)
         this.setData({
             list: list,
@@ -85,6 +62,22 @@ Page({
         })
         
     },
+
+    // 去编辑
+    toEdt(e) {
+        var markerID = e.currentTarget.dataset.marker_id
+        wx.navigateTo({
+            url: '/pages/editor/editor?markerID=' + markerID,
+        })
+    },
+    // 新增
+    toAdd(){
+        wx.navigateTo({
+            url: '/pages/editor/editor'
+        })
+    },
+
+
 
     markerChange(list) {
         var temp = []
@@ -95,7 +88,7 @@ Page({
                 id: i,
                 longitude: marker.location.coordinates[0],
                 latitude: marker.location.coordinates[1],
-                iconPath: '../../images/menu_address.png',
+                iconPath: marker.isShow == true ? '/images/menu_address.png' : '/images/address_un.png',
                 width: 40,
                 height: 40,
                 callout: {
@@ -129,81 +122,13 @@ Page({
         var index = e.markerId
         var marker = this.data.list[index]
 
-        var isLove = this.checkIsLove(marker._id) // TODO 判断是否收藏
+        // var isLove = this.checkIsLove(marker._id) // TODO 判断是否收藏
         console.log(marker)
         GP.setData({
             isShowCallout: true,
             marker: marker,
-            isLove: isLove,
+            // isLove: isLove,
         })
-    },
-
-    // 收藏
-    async love() {
-        //已经收藏，不能点击
-        if (this.data.isLove) {
-            wx.showToast({
-                title: '已收藏',
-            })
-            return  
-        }
-        // 添加收藏
-        var res = await app.db.userUpdateMarker({
-            markerID : this.data.marker._id,
-            type:0
-        })
-        wx.showToast({
-            title: res.msg,
-        })
-
-        this.setData({
-            userInfo:res.data,
-            isLove:true,  // 强制设置为喜欢
-        })
-    },
-
-    // 判断用户是否已经收藏
-    checkIsLove(markerID){
-        var markerList = this.data.userInfo.markerList
-        for (var i = 0; i < markerList.length ;i++){
-            if(markerID == markerList[i].markerID){
-                return true
-            }
-        }
-        return false
-    },
-
-
-
-
-
-
-
-    // 初始化
-    onInit2() {
-        var mode = poiUtils.getMode()
-        // poiUtils.getIndex() // 获取初始化信息
-        db.index().then(res => {
-            poiUtils.setIndex(res)
-            // // 正常模式 
-            // if (mode == APP.ROUTE.MODE_NORMAL)
-                poiUtils.setTagPOI(0)
-        })
-
-        // 扫描poi二维码模式
-        if (mode == APP.ROUTE.MODE_POI) {
-            var poiID = poiUtils.getPOIID()
-            db.searchPOIDetail(poiID).then(res => poiUtils.setStorePOI(res))
-        }
-        // debugger
-        // 扫描poi二维码模式
-        if (mode == APP.ROUTE.MODE_STORE) {
-            var store_id = poiUtils.getStoreID()
-            db.searchPOIStore(store_id).then(res => {
-                var markers = poiUtils.setPOIList(res)
-                mapContext.includePoints({ points: markers })
-            })
-        }
     },
 
 
@@ -235,21 +160,6 @@ Page({
             scale: 18,
         })
     },
-
-    copyTel(e){
-        // console.log(e)
-        wx.setClipboardData({
-            data: e.currentTarget.dataset.tel,
-            success: function (res) {
-                wx.showModal({
-                    title: '复制成功',
-                    content: '请搜索客服微信or拨打电话',
-                    showCancel: false
-                });
-            }
-        })
-    },
-
 
 
 
@@ -286,10 +196,9 @@ Page({
 
     // 刷新
     refresh() {
-        // wx.redirectTo({
-        //     url: '/pages/route/route',
-        // })
-        this.onInit()
+        wx.redirectTo({
+            url: '/pages/route/route',
+        })
     },
 
     /**

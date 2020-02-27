@@ -6,6 +6,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+
+        markerID:"",
         imgList: [],
         imageMax:6,
 
@@ -26,31 +28,44 @@ Page({
      */
     onLoad: function (options) {
         // this.onInit()
+        console.log(options)
+        this.setData({ markerID: options.markerID || ""})
+        if ( this.data.markerID != "")
+            this.onInit()
     },
 
     async onInit(){
-        var res = await app.db.getSelfStore()
-
-        var store = res.data.store
+        // debugger
+        var res = await app.db.mapGetDetail({markerID:this.data.markerID})
+        var store = res.data
         this.setData({
             store: store ,
-            bgColor: store.bgColor,
         })
 
-        if (store.noticeUrl != "" 
-            && store.noticeUrl != undefined
-            && store.noticeUrl != null )
+
+        if (store.imageList != "" 
+            && store.imageList != undefined
+            && store.imageList != null )
             this.setData({
-                imgList: store.noticeUrlList
+                imgList: store.imageList
             })
 
-        if (store.logo != ""
-            && store.logo != undefined
-            && store.logo != null)
+        if (store.coverUrl != ""
+            && store.coverUrl != undefined
+            && store.coverUrl != null)
             this.setData({
-                logoList: [store.logo]
+                logoList: [store.coverUrl]
             })
-        
+
+        // debugger
+        this.setData({
+            addressList:[{
+                address: store.address,
+                longitude: store.location.coordinates[0],
+                latitude: store.location.coordinates[1],
+            }]
+        })
+        console.log(this.data.store)
     },
 
     // 保存
@@ -58,7 +73,8 @@ Page({
         var formData = e.detail.value        
         var userID = wx.getStorageSync(app.db.KEY_USERID)        
         // 上传logo
-        if (this.data.logoList[0] != this.data.store.logo) {
+        // debugger
+        if (this.data.logoList[0] != this.data.store.coverUrl) {
             // todo 验证图片是否为新上传的
             const filePath = this.data.logoList[0]
             if (filePath) {
@@ -108,6 +124,7 @@ Page({
         }
 
         var markerData = {
+            _id: this.data.markerID,
             name: formData.name,
             callout: formData.callout,
             notice: formData.notice,
@@ -119,6 +136,7 @@ Page({
             imageList: formData.noticeUrlList,
             tagID: "",
             storeID: "",
+            isShow: formData.isShow,
         }
         console.log(markerData)
 

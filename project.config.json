@@ -82,6 +82,21 @@
 					"id": -1,
 					"name": "pages/editor/editor",
 					"pathName": "pages/editor/editor",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/edt_poi/edt_poi",
+					"pathName": "pages/edt_poi/edt_poi",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/editor/editor markerID",
+					"pathName": "pages/editor/editor",
+					"query": "markerID=4278fc3a5e53eea702100e3a35054de1",
 					"scene": null
 				}
 			]
